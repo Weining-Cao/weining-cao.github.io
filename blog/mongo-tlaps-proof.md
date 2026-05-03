@@ -79,18 +79,6 @@ MongoLoglessDynamicRaft_IndAuto_ProofDraft.tla
 
 这里关键的不是某一个局部证明步骤有多复杂，而是 agent 能够持续生成并修复大量证明步骤，把它们组织成一个完整、可检查的 TLAPS 证明文件。
 
-## 为什么这件事有意义
-
-在 MongoLoglessDynamicRaft 这个复杂度级别上，基于自动生成的归纳不变式，我们已经把安全性质证明推进到机械化检查层面：
-
-```text
-Inductive invariant
-  -> TLAPS proof script
-  -> Machine-checkable safety proof
-```
-
-这个结果的意义不只是“让 agent 写了很多证明代码”。更重要的是，它说明大语言模型 agent 可以被放进一个严格的形式化验证反馈回路中：它生成证明，证明器检查证明，失败信息再反过来约束下一轮生成。最终产物不是自然语言解释，而是可以由 TLAPS 检查的形式化证明脚本。
-
 ## 还没有解决什么
 
 目前我们证明的是 MongoLoglessDynamicRaft 这个级别上，从归纳不变式自动生成到 TLAPS 证明自动生成的链条。不同协议的状态空间、动作结构、不变式形态和证明风格都可能不同。后续还需要在更多协议上检验这种方法的稳定性，尤其是更复杂日志结构、更强 liveness 需求，以及需要更深组合推理的协议。
