@@ -449,42 +449,51 @@
         <h1>
           <span data-en="Weining Cao" data-zh="曹蔚宁">Weining Cao</span>
         </h1>
-        <p class="tagline">
-          <span data-en="Research Focus: " data-zh="研究方向：">Research Focus: </span><strong data-en="Formal Verification"
-            data-zh="形式化验证">Formal Verification</strong><br />
-          <span data-en="Current Interest: " data-zh="当前兴趣：">Current Interest: </span><strong
-            data-en="Inductive Invariants for Distributed Protocols" data-zh="分布式协议归纳不变式">Inductive Invariants for
-            Distributed Protocols</strong>
+        <p class="affiliation"
+          data-en="Ph.D. student, State Key Laboratory for Novel Software Technology, Nanjing University"
+          data-zh="南京大学计算机软件新技术国家重点实验室 硕博连读">
+          Ph.D. student, State Key Laboratory for Novel Software Technology, Nanjing University
         </p>
+        <p class="hero-summary">
+          <span data-en="I develop " data-zh="我研究">I develop </span><strong
+            data-en="neuro-symbolic methods for invariant inference"
+            data-zh="面向不变式推导的神经符号方法">neuro-symbolic methods for invariant inference</strong><span
+            data-en=", with a focus on program verification and distributed protocol verification."
+            data-zh="，重点关注程序验证和分布式协议验证。">, with a focus on program verification and distributed protocol
+            verification.</span>
+        </p>
+        <div class="focus-list">
+          <span class="focus-pill" data-en="Formal Verification" data-zh="形式化验证">Formal Verification</span>
+          <span class="focus-pill" data-en="Inductive Invariants" data-zh="归纳不变式">Inductive Invariants</span>
+          <span class="focus-pill" data-en="LLM for Verification" data-zh="LLM 辅助验证">LLM for Verification</span>
+          <span class="focus-pill" data-en="Distributed Protocols" data-zh="分布式协议">Distributed Protocols</span>
+        </div>
 
-        <!-- Stats 统计区域 -->
         <div class="stats">
-          <a class="stat-item" href="https://github.com/Weining-Cao" target="_blank">
+          <a class="stat-item" href="https://github.com/Weining-Cao" target="_blank" rel="noopener">
             <span class="stat-icon">⭐</span>
             <div class="stat-content">
               <span class="stat-number loading" id="github-stars">--</span>
               <span class="stat-label">GitHub Stars</span>
             </div>
           </a>
-          <a class="stat-item" href="https://scholar.google.com/" target="_blank">
-            <span class="stat-icon">📚</span>
+          <a class="stat-item" href="https://dblp.org/pid/393/9603" target="_blank" rel="noopener">
+            <span class="stat-icon">DBLP</span>
             <div class="stat-content">
-              <!-- ✏️ 手动修改这里的引用数 -->
-              <span class="stat-number">34</span>
-              <span class="stat-label" data-en="Citations" data-zh="论文引用">Citations</span>
+              <span class="stat-number">Profile</span>
+              <span class="stat-label" data-en="Publications" data-zh="论文列表">Publications</span>
             </div>
           </a>
         </div>
 
         <div class="links">
-          <!-- ✏️ 修改 data-email 为你的邮箱 -->
           <span class="email-copy" data-email="weiningcao@smail.nju.edu.cn" onclick="copyEmail(this)">
-            <span data-en="📧 Email" data-zh="📧 邮箱">📧 Email</span>
+            <span data-en="Email" data-zh="邮箱">Email</span>
             <span class="copy-tooltip" data-en="Copied!" data-zh="已复制!">Copied!</span>
           </span>
-          <a href="https://github.com/Weining-Cao" target="_blank">🐙 GitHub</a>
+          <a href="https://github.com/Weining-Cao" target="_blank" rel="noopener">GitHub</a>
           <a href="files/resume.pdf" download>
-            <span data-en="📄 Resume" data-zh="📄 简历">📄 Resume</span>
+            <span data-en="Resume" data-zh="简历">Resume</span>
           </a>
         </div>
       </div>
@@ -494,9 +503,28 @@
     <section class="card">
       <h2><span data-en="Research Interests" data-zh="研究领域">Research Interests</span></h2>
       <div class="research-grid">
-        <div class="research-item">🔍 Formal Verification</div>
-        <div class="research-item">🤖 AI for SE</div>
-        <div class="research-item">⚙️ Software Engineering</div>
+        <div class="research-item">
+          <h3 data-en="Formal Verification" data-zh="形式化验证">Formal Verification</h3>
+          <p data-en="Automated reasoning for programs and protocols, with an emphasis on inductive invariants and proof automation."
+            data-zh="面向程序和协议的自动化推理，重点关注归纳不变式与形式化证明自动化。">
+            Automated reasoning for programs and protocols, with an emphasis on inductive invariants and proof
+            automation.
+          </p>
+        </div>
+        <div class="research-item">
+          <h3 data-en="Neuro-symbolic Methods" data-zh="神经符号方法">Neuro-symbolic Methods</h3>
+          <p data-en="Combining LLM-based generation with symbolic checking, counterexamples, and proof feedback."
+            data-zh="结合大语言模型生成、符号检查、反例反馈和证明反馈。">
+            Combining LLM-based generation with symbolic checking, counterexamples, and proof feedback.
+          </p>
+        </div>
+        <div class="research-item">
+          <h3 data-en="Distributed Protocols" data-zh="分布式协议">Distributed Protocols</h3>
+          <p data-en="Invariant inference and verification for TLA+ protocol models, including Paxos-style systems."
+            data-zh="面向 TLA+ 协议模型的不变式推导与验证，包括 Paxos 类系统。">
+            Invariant inference and verification for TLA+ protocol models, including Paxos-style systems.
+          </p>
+        </div>
       </div>
     </section>
 
@@ -510,9 +538,20 @@
           <div class="paper-authors">
             <strong>Weining Cao</strong>, Guangyuan Wu, Tangzhi Xu, Yuan Yao, Hengfeng Wei, Taolue Chen, Xiaoxing Ma
           </div>
-          <a class="paper-link" href="papers/ISSTA25_Clause2Inv.pdf" target="_blank">
-            <span data-en="📄 View Paper →" data-zh="📄 查看论文 →">📄 View Paper →</span>
-          </a>
+          <p class="paper-summary"
+            data-en="A generate-combine-check framework for LLM-based loop invariant inference. It solved 312/316 linear benchmarks, improving over the previous best result of 219."
+            data-zh="一个面向 LLM 循环不变式推导的 generate-combine-check 框架。在线性基准测试中解决 312/316 个问题，超过此前最优的 219 个。">
+            A generate-combine-check framework for LLM-based loop invariant inference. It solved 312/316 linear
+            benchmarks, improving over the previous best result of 219.
+          </p>
+          <div class="paper-links">
+            <a class="paper-link" href="papers/ISSTA25_Clause2Inv.pdf" target="_blank" rel="noopener">
+              <span data-en="View Paper" data-zh="查看论文">View Paper</span>
+            </a>
+            <a class="paper-link" href="https://github.com/SoftWiser-group/Clause2Inv" target="_blank" rel="noopener">
+              <span data-en="Code" data-zh="代码">Code</span>
+            </a>
+          </div>
         </li>
         <li class="paper-item">
           <span class="paper-venue">ASE 2024</span>
@@ -520,9 +559,17 @@
           <div class="paper-authors">
             Guangyuan Wu, <strong>Weining Cao</strong>, Yuan Yao, Hengfeng Wei, Taolue Chen, Xiaoxing Ma
           </div>
-          <a class="paper-link" href="papers/ASE24_LaM4Inv.pdf" target="_blank">
-            <span data-en="📄 View Paper →" data-zh="📄 查看论文 →">📄 View Paper →</span>
-          </a>
+          <p class="paper-summary"
+            data-en="A neuro-symbolic loop invariant inference method combining LLMs with bounded model checking. The paper received the ASE 2024 Distinguished Paper Award."
+            data-zh="结合大语言模型与有界模型检查的神经符号循环不变式推导方法。论文获 ASE 2024 Distinguished Paper Award。">
+            A neuro-symbolic loop invariant inference method combining LLMs with bounded model checking. The paper
+            received the <span class="paper-note">ASE 2024 Distinguished Paper Award</span>.
+          </p>
+          <div class="paper-links">
+            <a class="paper-link" href="papers/ASE24_LaM4Inv.pdf" target="_blank" rel="noopener">
+              <span data-en="View Paper" data-zh="查看论文">View Paper</span>
+            </a>
+          </div>
         </li>
       </ul>
     </section>
@@ -533,7 +580,7 @@
   </div>
 
   <script>
-    // ===== 语言切换 =====
+    // Language switching
     function switchLang(lang) {
       document.getElementById('btn-en').classList.toggle('active', lang === 'en');
       document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
@@ -547,25 +594,22 @@
       localStorage.setItem('preferred-lang', lang);
     }
 
-    // ===== 复制邮箱到剪切板 =====
+    // Copy email to clipboard
     function copyEmail(element) {
       const email = element.getAttribute('data-email');
 
-      // 使用现代 Clipboard API
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(email).then(() => {
           showCopiedTip(element);
         }).catch(err => {
-          // 降级方案
           fallbackCopy(email, element);
         });
       } else {
-        // 旧浏览器降级方案
         fallbackCopy(email, element);
       }
     }
 
-    // 降级复制方法（兼容旧浏览器）
+    // Fallback for older browsers
     function fallbackCopy(text, element) {
       const textarea = document.createElement('textarea');
       textarea.value = text;
@@ -585,11 +629,10 @@
       document.body.removeChild(textarea);
     }
 
-    // 显示"已复制"提示
+    // Show the copied state
     function showCopiedTip(element) {
       element.classList.add('copied');
 
-      // 1.5秒后隐藏提示
       setTimeout(() => {
         element.classList.remove('copied');
       }, 1500);
@@ -599,29 +642,26 @@
       const username = 'Weining-Cao';
       const el = document.getElementById('github-stars');
       const CACHE_KEY = 'github-stars-cache';
-      const CACHE_DURATION = 60 * 60 * 1000; // 缓存 1 小时
+      const CACHE_DURATION = 60 * 60 * 1000;
 
       const extraRepos = [
         'SoftWiser-group/Clause2Inv',
       ];
 
-      // 1. 先检查缓存
       const cached = localStorage.getItem(CACHE_KEY);
       if (cached) {
         const { stars, timestamp } = JSON.parse(cached);
         if (Date.now() - timestamp < CACHE_DURATION) {
           el.textContent = stars;
           el.classList.remove('loading');
-          return; // 使用缓存，不请求 API
+          return;
         }
       }
 
-      // 2. 缓存过期或不存在，请求 API
       try {
         const userReposRes = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
 
         if (userReposRes.status === 403) {
-          // API 限制，尝试用旧缓存
           if (cached) {
             const { stars } = JSON.parse(cached);
             el.textContent = stars;
@@ -653,7 +693,6 @@
 
         const totalStars = userStars + extraStars;
 
-        // 3. 保存到缓存
         localStorage.setItem(CACHE_KEY, JSON.stringify({
           stars: totalStars,
           timestamp: Date.now()
@@ -664,7 +703,6 @@
 
       } catch (error) {
         console.error('Failed to fetch GitHub stars:', error);
-        // 出错时尝试用旧缓存
         if (cached) {
           const { stars } = JSON.parse(cached);
           el.textContent = stars;
@@ -675,7 +713,6 @@
       }
     }
 
-    // ===== 页面加载时执行 =====
     document.addEventListener('DOMContentLoaded', () => {
       switchLang(localStorage.getItem('preferred-lang') || 'en');
       fetchGitHubStars();
