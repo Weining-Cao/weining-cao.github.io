@@ -350,8 +350,56 @@
       margin-bottom: 12px;
     }
 
-    .comments {
-      min-height: 160px;
+    .feedback-form {
+      display: grid;
+      gap: 12px;
+    }
+
+    .feedback-form input,
+    .feedback-form textarea {
+      width: 100%;
+      border: 1px solid #d9dde3;
+      border-radius: 6px;
+      padding: 11px 12px;
+      font: inherit;
+      color: #333;
+      background: white;
+      transition: border-color 0.2s ease;
+    }
+
+    .feedback-form textarea {
+      min-height: 110px;
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    .feedback-form input:focus,
+    .feedback-form textarea:focus {
+      outline: none;
+      border-color: #2c3e50;
+    }
+
+    .feedback-form button {
+      justify-self: start;
+      border: none;
+      border-radius: 6px;
+      padding: 11px 20px;
+      background: #2c3e50;
+      color: white;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .feedback-form button:hover {
+      background: #1a252f;
+    }
+
+    .feedback-status {
+      min-height: 1.4em;
+      color: #666;
+      font-size: 0.9em;
     }
 
     /* Footer */
@@ -506,16 +554,24 @@
           </a>
           <div class="feedback-box">
             <div class="feedback-title" data-en="Comments and feedback" data-zh="评论与反馈">Comments and feedback</div>
-            <div class="comments">
-              <script src="https://utteranc.es/client.js"
-                repo="Weining-Cao/weining-cao.github.io"
-                issue-term="pathname"
-                label="comment"
-                theme="github-light"
-                crossorigin="anonymous"
-                async>
-              </script>
-            </div>
+            <form class="feedback-form" onsubmit="sendFeedback(event)">
+              <input
+                type="text"
+                name="name"
+                data-placeholder-en="Your name or nickname (optional)"
+                data-placeholder-zh="你的姓名或昵称（可选）"
+                placeholder="Your name or nickname (optional)"
+              />
+              <textarea
+                name="message"
+                required
+                data-placeholder-en="Share your thoughts, questions, or suggestions..."
+                data-placeholder-zh="写下你的想法、问题或建议……"
+                placeholder="Share your thoughts, questions, or suggestions..."
+              ></textarea>
+              <button type="submit" data-en="Send Feedback" data-zh="发送反馈">Send Feedback</button>
+              <div class="feedback-status" aria-live="polite"></div>
+            </form>
           </div>
         </li>
       </ul>
@@ -535,6 +591,10 @@
 
       document.querySelectorAll('[data-en][data-zh]').forEach(el => {
         el.textContent = lang === 'en' ? el.dataset.en : el.dataset.zh;
+      });
+
+      document.querySelectorAll('[data-placeholder-en][data-placeholder-zh]').forEach(el => {
+        el.placeholder = lang === 'en' ? el.dataset.placeholderEn : el.dataset.placeholderZh;
       });
 
       document.title = lang === 'en' ? 'Weining Cao | Homepage' : '曹蔚宁 | 个人主页';
@@ -587,6 +647,44 @@
       setTimeout(() => {
         element.classList.remove('copied');
       }, 1500);
+    }
+
+    async function sendFeedback(event) {
+      event.preventDefault();
+
+      const form = event.currentTarget;
+      const status = form.querySelector('.feedback-status');
+      const button = form.querySelector('button[type="submit"]');
+      const currentLang = document.documentElement.lang === 'zh-CN' ? 'zh' : 'en';
+      const payload = {
+        name: form.elements.name.value.trim(),
+        message: form.elements.message.value.trim(),
+        page: window.location.pathname
+      };
+
+      status.textContent = currentLang === 'zh' ? '正在发送……' : 'Sending...';
+      button.disabled = true;
+
+      try {
+        const response = await fetch('/api/feedback', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+          throw new Error('Feedback request failed');
+        }
+
+        form.reset();
+        status.textContent = currentLang === 'zh' ? '已发送，谢谢反馈。' : 'Sent. Thanks for the feedback.';
+      } catch (err) {
+        status.textContent = currentLang === 'zh'
+          ? '发送失败，请稍后重试。'
+          : 'Failed to send. Please try again later.';
+      } finally {
+        button.disabled = false;
+      }
     }
 
     document.addEventListener('DOMContentLoaded', () => {
