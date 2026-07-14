@@ -23,19 +23,12 @@
         Helvetica,
         Arial,
         sans-serif;
-      background: #f5f6f8;
-      min-height: 100vh;
-      padding: 40px 20px;
+      background: #fff;
       color: #333;
+      line-height: 1.7;
     }
 
-    .container {
-      max-width: 900px;
-      margin: auto;
-      position: relative;
-    }
-
-    /* Language Switcher */
+    /* ========== Language Switcher ========== */
     .lang-switcher {
       position: fixed;
       top: 25px;
@@ -45,19 +38,21 @@
 
     .lang-btn {
       display: flex;
-      background: white;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       border-radius: 50px;
-      padding: 5px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      padding: 4px;
+      border: 1px solid rgba(255,255,255,0.25);
     }
 
     .lang-btn button {
       border: none;
       background: transparent;
-      padding: 10px 20px;
-      font-size: 0.9em;
+      padding: 9px 18px;
+      font-size: 0.85em;
       font-weight: 600;
-      color: #666;
+      color: rgba(255,255,255,0.75);
       cursor: pointer;
       border-radius: 50px;
       transition: all 0.3s ease;
@@ -65,135 +60,161 @@
     }
 
     .lang-btn button.active {
-      background: #2c3e50;
-      color: white;
+      background: rgba(255,255,255,0.95);
+      color: #1a1a2e;
     }
 
     .lang-btn button:hover:not(.active) {
-      color: #2c3e50;
+      color: #fff;
     }
 
-    /* Hero Section */
+    /* ========== Hero ========== */
     .hero {
-      background: white;
-      border-radius: 12px;
-      padding: 70px 50px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-      margin-bottom: 24px;
-      border-top: 4px solid #2c3e50;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
+      position: relative;
+      background: url('dusha.png') center / cover no-repeat;
+      background-attachment: fixed;
+      padding: 120px 40px 80px;
     }
 
-    .hero-text h1 {
-      font-size: 2.4em;
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(0,0,0,0.55) 0%,
+        rgba(0,0,0,0.45) 50%,
+        rgba(0,0,0,0.6) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+    }
+
+    .hero h1 {
+      font-size: 3em;
       font-weight: 700;
-      color: #1a1a2e;
-      margin-bottom: 24px;
+      color: #fff;
+      margin-bottom: 16px;
+      letter-spacing: 0.02em;
     }
 
-    .hero-text .tagline {
+    .hero .tagline {
       font-size: 1.15em;
-      color: #555;
-      line-height: 2.2;
-      margin-bottom: 35px;
+      color: rgba(255,255,255,0.8);
+      line-height: 2;
+      margin-bottom: 40px;
     }
 
-    .hero-text .tagline strong {
-      color: #2c3e50;
+    .hero .tagline strong {
+      color: #fff;
       font-weight: 600;
     }
 
-    /* Stats 统计区域 */
-    .stats {
+    /* Stats in hero */
+    .hero .stats {
       display: flex;
       justify-content: center;
-      gap: 40px;
-      margin-bottom: 35px;
+      gap: 30px;
+      margin-bottom: 40px;
       flex-wrap: wrap;
     }
 
-    .stat-item {
+    .hero .stat-item {
       display: flex;
       align-items: center;
       gap: 10px;
-      background: #f9fafb;
-      padding: 12px 24px;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      padding: 10px 22px;
       border-radius: 50px;
-      border: 1px solid #eee;
-      transition: all 0.2s ease;
+      border: 1px solid rgba(255,255,255,0.2);
       text-decoration: none;
       color: inherit;
+      transition: all 0.25s ease;
     }
 
-    .stat-item:hover {
-      border-color: #2c3e50;
-      background: #f5f6f8;
+    .hero .stat-item:hover {
+      background: rgba(255,255,255,0.22);
+      border-color: rgba(255,255,255,0.4);
     }
 
-    .stat-icon {
-      font-size: 1.3em;
+    .hero .stat-icon {
+      font-size: 1.2em;
     }
 
-    .stat-content {
+    .hero .stat-content {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
     }
 
-    .stat-number {
-      font-size: 1.4em;
+    .hero .stat-number {
+      font-size: 1.35em;
       font-weight: 700;
-      color: #2c3e50;
+      color: #fff;
       line-height: 1.2;
     }
 
-    .stat-number.loading {
-      font-size: 0.9em;
-      color: #999;
+    .hero .stat-number.loading {
+      font-size: 0.85em;
+      color: rgba(255,255,255,0.6);
     }
 
-    .stat-label {
-      font-size: 0.8em;
-      color: #888;
+    .hero .stat-label {
+      font-size: 0.78em;
+      color: rgba(255,255,255,0.65);
       font-weight: 500;
     }
 
-    /* Links */
-    .links {
+    /* Links in hero */
+    .hero .links {
       display: flex;
-      gap: 20px;
+      gap: 16px;
       flex-wrap: wrap;
       justify-content: center;
     }
 
-    .links a,
-    .links .email-copy {
+    .hero .links a,
+    .hero .links .email-copy {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 12px 24px;
-      background: #f5f6f8;
-      color: #333;
+      padding: 12px 28px;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      color: #fff;
       text-decoration: none;
-      border-radius: 6px;
+      border-radius: 50px;
       font-weight: 500;
       font-size: 0.95em;
-      transition: all 0.2s ease;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.25s ease;
     }
 
-    .links a:hover,
-    .links .email-copy:hover {
-      background: #2c3e50;
-      color: white;
+    .hero .links a:hover,
+    .hero .links .email-copy:hover {
+      background: rgba(255,255,255,0.95);
+      color: #1a1a2e;
+      border-color: rgba(255,255,255,0.95);
     }
 
-    /* ========== 邮箱复制样式 ========== */
+    /* ========== Email copy tooltip ========== */
     .email-copy {
       position: relative;
       cursor: pointer;
     }
 
-    /* 复制成功提示 */
     .copy-tooltip {
       position: absolute;
       bottom: 100%;
@@ -212,7 +233,6 @@
       margin-bottom: 8px;
     }
 
-    /* 小三角箭头 */
     .copy-tooltip::after {
       content: '';
       position: absolute;
@@ -223,136 +243,170 @@
       border-top-color: #333;
     }
 
-    /* 显示提示 */
     .email-copy.copied .copy-tooltip {
       opacity: 1;
       visibility: visible;
     }
 
-    /* Cards */
-    .card {
-      background: white;
-      border-radius: 12px;
-      padding: 35px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-      margin-bottom: 24px;
+    /* ========== Content Sections ========== */
+    section.content {
+      padding: 80px 10%;
     }
 
-    .card h2 {
-      font-size: 1.4em;
+    section.content:nth-child(even) {
+      background: #f8f9fa;
+    }
+
+    section.content:nth-child(odd) {
+      background: #fff;
+    }
+
+    .section-inner {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    section.content h2 {
+      font-size: 1.5em;
       color: #1a1a2e;
-      margin-bottom: 25px;
-      padding-bottom: 12px;
-      border-bottom: 2px solid #eee;
+      margin-bottom: 32px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid #e8e8e8;
+      font-weight: 700;
     }
 
-    /* Research Areas */
+    /* ========== Research Grid ========== */
     .research-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
+      gap: 14px;
     }
 
     .research-item {
-      background: #f9fafb;
+      background: #fff;
       padding: 18px 22px;
       border-radius: 8px;
       font-weight: 500;
       color: #444;
       text-align: center;
-      border: 1px solid #eee;
+      border: 1px solid #e0e0e0;
       transition: all 0.2s ease;
     }
 
     .research-item:hover {
       border-color: #2c3e50;
-      background: #f5f6f8;
+      background: #fafbfc;
     }
 
-    /* Papers */
-    .paper-list {
+    /* ========== Paper / List Items ========== */
+    .item-list {
       list-style: none;
     }
 
-    .paper-item {
-      padding: 25px;
-      background: #f9fafb;
-      border-radius: 10px;
-      margin-bottom: 20px;
+    .item-list li {
+      padding: 28px 0;
+      border-bottom: 1px solid #e8e8e8;
       border-left: 3px solid #2c3e50;
+      padding-left: 24px;
+      margin-bottom: 0;
       transition: all 0.2s ease;
     }
 
-    .paper-item:last-child {
-      margin-bottom: 0;
+    .item-list li:last-child {
+      border-bottom: none;
     }
 
-    .paper-item:hover {
-      background: #f5f6f8;
+    .item-list li:hover {
+      border-left-color: #1a252f;
     }
 
-    .paper-venue {
+    .item-venue {
       display: inline-block;
       background: #2c3e50;
-      color: white;
+      color: #fff;
       padding: 4px 12px;
       border-radius: 4px;
-      font-size: 0.85em;
+      font-size: 0.82em;
       font-weight: 600;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
+      letter-spacing: 0.02em;
     }
 
-    .paper-title {
+    .item-title {
       font-size: 1.05em;
       font-weight: 600;
       color: #1a1a2e;
       line-height: 1.6;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
-    .paper-authors {
+    .item-detail {
       font-size: 0.95em;
       color: #666;
-      line-height: 1.6;
-      margin-bottom: 15px;
+      line-height: 1.7;
+      margin-bottom: 12px;
     }
 
-    .paper-authors strong {
+    .item-detail strong {
       color: #2c3e50;
       font-weight: 600;
     }
 
-    .paper-link {
+    .item-link {
       display: inline-flex;
       align-items: center;
       gap: 6px;
       color: #2c3e50;
       text-decoration: none;
       font-weight: 600;
-      font-size: 0.95em;
+      font-size: 0.93em;
       transition: all 0.2s ease;
+      margin-right: 20px;
     }
 
-    .paper-link:hover {
+    .item-link:hover {
       color: #1a252f;
     }
 
-    /* Footer */
+    /* ========== Footer ========== */
     .footer {
+      background: #1a1a2e;
+      color: rgba(255,255,255,0.55);
       text-align: center;
-      padding: 30px;
-      color: #999;
+      padding: 36px;
       font-size: 0.9em;
     }
 
-    /* Responsive */
-    @media (max-width: 640px) {
+    /* ========== Responsive ========== */
+    @media (max-width: 768px) {
       .hero {
-        padding: 50px 25px;
+        padding: 100px 24px 60px;
+        background-attachment: scroll;
       }
 
-      .hero-text h1 {
-        font-size: 1.8em;
+      .hero h1 {
+        font-size: 2em;
+      }
+
+      .hero .tagline {
+        font-size: 1em;
+        line-height: 1.8;
+      }
+
+      .hero .stats {
+        gap: 12px;
+      }
+
+      .hero .stat-item {
+        padding: 8px 16px;
+      }
+
+      .hero .stat-number {
+        font-size: 1.15em;
+      }
+
+      section.content {
+        padding: 50px 6%;
       }
 
       .research-grid {
@@ -360,21 +414,13 @@
       }
 
       .lang-switcher {
-        top: 15px;
-        right: 15px;
+        top: 14px;
+        right: 14px;
       }
 
       .lang-btn button {
-        padding: 8px 14px;
-        font-size: 0.85em;
-      }
-
-      .stats {
-        gap: 15px;
-      }
-
-      .stat-item {
-        padding: 10px 18px;
+        padding: 7px 14px;
+        font-size: 0.8em;
       }
     }
   </style>
@@ -389,64 +435,63 @@
     </div>
   </div>
 
-  <div class="container">
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="hero-text">
-        <h1>
-          <span data-en="Weining Cao" data-zh="曹蔚宁">Weining Cao</span>
-        </h1>
-        <p class="tagline">
-          <span data-en="Graduate student in Computer Science at Nanjing University." data-zh="南京大学计算机科学专业研究生。">Graduate student in Computer Science at Nanjing University.</span><br />
-          <span data-en="I develop neuro-symbolic methods for program and distributed-protocol verification." data-zh="研究面向程序与分布式协议验证的神经符号方法。">I develop neuro-symbolic methods for program and distributed-protocol verification.</span>
-        </p>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>
+        <span data-en="Weining Cao" data-zh="曹蔚宁">Weining Cao</span>
+      </h1>
+      <p class="tagline">
+        <span data-en="Graduate student in Computer Science at Nanjing University." data-zh="南京大学计算机科学专业研究生。">Graduate student in Computer Science at Nanjing University.</span><br />
+        <span data-en="I develop neuro-symbolic methods for program and distributed-protocol verification." data-zh="研究面向程序与分布式协议验证的神经符号方法。">I develop neuro-symbolic methods for program and distributed-protocol verification.</span>
+      </p>
 
-        <!-- Stats 统计区域 -->
-        <div class="stats">
-          <a class="stat-item" href="https://github.com/Weining-Cao" target="_blank" rel="noopener noreferrer">
-            <span class="stat-icon">⭐</span>
-            <div class="stat-content">
-              <span class="stat-number" id="github-stars">13</span>
-              <span class="stat-label" data-en="Project Stars" data-zh="项目 Star 数">Project Stars</span>
-            </div>
-          </a>
-          <a class="stat-item" href="https://scholar.google.com/citations?user=g9oDZ_AAAAAJ&hl=en&oi=ao" target="_blank">
-            <span class="stat-icon">📚</span>
-            <div class="stat-content">
-              <!-- ✏️ 手动修改这里的引用数 -->
-              <span class="stat-number">80</span>
-              <span class="stat-label" data-en="Citations" data-zh="论文引用">Citations</span>
-            </div>
-          </a>
-        </div>
-
-        <div class="links">
-          <!-- ✏️ 修改 data-email 为你的邮箱 -->
-          <span class="email-copy" data-email="weiningcao@smail.nju.edu.cn" onclick="copyEmail(this)">
-            <span data-en="📧 Email" data-zh="📧 邮箱">📧 Email</span>
-            <span class="copy-tooltip" data-en="Copied!" data-zh="已复制!">Copied!</span>
-          </span>
-          <a href="https://github.com/Weining-Cao" target="_blank">🐙 GitHub</a>
-          <a href="files/resume.pdf" download>
-            <span data-en="📄 Resume" data-zh="📄 简历">📄 Resume</span>
-          </a>
-        </div>
+      <div class="stats">
+        <a class="stat-item" href="https://github.com/Weining-Cao" target="_blank" rel="noopener noreferrer">
+          <span class="stat-icon">⭐</span>
+          <div class="stat-content">
+            <span class="stat-number" id="github-stars">13</span>
+            <span class="stat-label" data-en="Project Stars" data-zh="项目 Star 数">Project Stars</span>
+          </div>
+        </a>
+        <a class="stat-item" href="https://scholar.google.com/citations?user=g9oDZ_AAAAAJ&hl=en&oi=ao" target="_blank">
+          <span class="stat-icon">📚</span>
+          <div class="stat-content">
+            <span class="stat-number">80</span>
+            <span class="stat-label" data-en="Citations" data-zh="论文引用">Citations</span>
+          </div>
+        </a>
       </div>
-    </section>
 
-    <!-- About -->
-    <section class="card">
+      <div class="links">
+        <span class="email-copy" data-email="weiningcao@smail.nju.edu.cn" onclick="copyEmail(this)">
+          <span data-en="📧 Email" data-zh="📧 邮箱">📧 Email</span>
+          <span class="copy-tooltip" data-en="Copied!" data-zh="已复制!">Copied!</span>
+        </span>
+        <a href="https://github.com/Weining-Cao" target="_blank">🐙 GitHub</a>
+        <a href="files/resume.pdf" download>
+          <span data-en="📄 Resume" data-zh="📄 简历">📄 Resume</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="content">
+    <div class="section-inner">
       <h2><span data-en="About" data-zh="个人简介">About</span></h2>
-      <p class="paper-authors">
+      <p class="item-detail">
         <span data-en="I am a graduate student in the School of Computer Science at Nanjing University and the State Key Laboratory for Novel Software Technology. My research combines large language models with formal reasoning to make verification more automated." data-zh="我目前在南京大学计算机学院、计算机软件新技术国家重点实验室攻读研究生。我的研究将大语言模型与形式化推理相结合，以提升验证工作的自动化程度。">I am a graduate student in the School of Computer Science at Nanjing University and the State Key Laboratory for Novel Software Technology. My research combines large language models with formal reasoning to make verification more automated.</span>
       </p>
-      <p class="paper-authors">
+      <p class="item-detail">
         <span data-en="My recent work focuses on inductive invariant inference, counterexample-guided candidate synthesis, and machine-assisted proof development for distributed systems." data-zh="近期工作聚焦于归纳不变式推导、反例驱动的候选式合成，以及面向分布式系统的机器辅助证明开发。">My recent work focuses on inductive invariant inference, counterexample-guided candidate synthesis, and machine-assisted proof development for distributed systems.</span>
       </p>
-    </section>
+    </div>
+  </section>
 
-    <!-- Research Areas -->
-    <section class="card">
+  <!-- Research Areas -->
+  <section class="content">
+    <div class="section-inner">
       <h2><span data-en="Research Interests" data-zh="研究领域">Research Interests</span></h2>
       <div class="research-grid">
         <div class="research-item"><span data-en="🔍 Inductive Invariant Inference" data-zh="🔍 归纳不变式推导">🔍 Inductive Invariant Inference</span></div>
@@ -454,98 +499,104 @@
         <div class="research-item"><span data-en="🤖 Neuro-symbolic Formal Verification" data-zh="🤖 神经符号形式化验证">🤖 Neuro-symbolic Formal Verification</span></div>
         <div class="research-item"><span data-en="⚙️ Automated Proof Generation" data-zh="⚙️ 形式化证明自动生成">⚙️ Automated Proof Generation</span></div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Publications -->
-    <section class="card">
+  <!-- Publications -->
+  <section class="content">
+    <div class="section-inner">
       <h2><span data-en="Publications" data-zh="代表论文">Publications</span></h2>
-      <ul class="paper-list">
-        <li class="paper-item">
-          <span class="paper-venue">I3DP · SOSP 2026</span>
-          <div class="paper-title">Synthesizing Inductive Invariants for Distributed Protocols via IC3 and Large Language Models</div>
-          <div class="paper-authors">
+      <ul class="item-list">
+        <li>
+          <span class="item-venue">I3DP · SOSP 2026</span>
+          <div class="item-title">Synthesizing Inductive Invariants for Distributed Protocols via IC3 and Large Language Models</div>
+          <div class="item-detail">
             <strong>Weining Cao</strong>, Guangyuan Wu, Yuan Yao, Hengfeng Wei, Taolue Chen, Xiaoxing Ma
           </div>
-          <div class="paper-authors"><span data-en="Accepted at SOSP 2026 · First author" data-zh="已被 SOSP 2026 接收 · 第一作者">Accepted at SOSP 2026 · First author</span></div>
-          <a class="paper-link" href="https://arxiv.org/abs/2605.24619" target="_blank" rel="noopener noreferrer">
+          <div class="item-detail"><span data-en="Accepted at SOSP 2026 · First author" data-zh="已被 SOSP 2026 接收 · 第一作者">Accepted at SOSP 2026 · First author</span></div>
+          <a class="item-link" href="https://arxiv.org/abs/2605.24619" target="_blank" rel="noopener noreferrer">
             <span data-en="📄 View Preprint →" data-zh="📄 查看预印本 →">📄 View Preprint →</span>
           </a>
-          <a class="paper-link" href="https://github.com/SoftWiser-group/I3DP" target="_blank" rel="noopener noreferrer">
+          <a class="item-link" href="https://github.com/SoftWiser-group/I3DP" target="_blank" rel="noopener noreferrer">
             <span data-en="💻 View Code →" data-zh="💻 查看代码 →">💻 View Code →</span>
           </a>
         </li>
-        <li class="paper-item">
-          <span class="paper-venue">ISSTA 2025</span>
-          <div class="paper-title">Clause2Inv: A Generate-Combine-Check Framework for Loop Invariant Inference</div>
-          <div class="paper-authors">
+        <li>
+          <span class="item-venue">ISSTA 2025</span>
+          <div class="item-title">Clause2Inv: A Generate-Combine-Check Framework for Loop Invariant Inference</div>
+          <div class="item-detail">
             <strong>Weining Cao</strong>, Guangyuan Wu, Tangzhi Xu, Yuan Yao, Hengfeng Wei, Taolue Chen, Xiaoxing Ma
           </div>
-          <div class="paper-authors"><span data-en="First author" data-zh="第一作者">First author</span></div>
-          <a class="paper-link" href="papers/ISSTA25_Clause2Inv.pdf" target="_blank">
+          <div class="item-detail"><span data-en="First author" data-zh="第一作者">First author</span></div>
+          <a class="item-link" href="papers/ISSTA25_Clause2Inv.pdf" target="_blank">
             <span data-en="📄 View Paper →" data-zh="📄 查看论文 →">📄 View Paper →</span>
           </a>
-          <a class="paper-link" href="https://github.com/SoftWiser-group/Clause2Inv" target="_blank" rel="noopener noreferrer">
+          <a class="item-link" href="https://github.com/SoftWiser-group/Clause2Inv" target="_blank" rel="noopener noreferrer">
             <span data-en="💻 View Code →" data-zh="💻 查看代码 →">💻 View Code →</span>
           </a>
         </li>
-        <li class="paper-item">
-          <span class="paper-venue">ASE 2024</span>
-          <div class="paper-title">LLM Meets Bounded Model Checking: Neuro-symbolic Loop Invariant Inference</div>
-          <div class="paper-authors">
+        <li>
+          <span class="item-venue">ASE 2024</span>
+          <div class="item-title">LLM Meets Bounded Model Checking: Neuro-symbolic Loop Invariant Inference</div>
+          <div class="item-detail">
             Guangyuan Wu, <strong>Weining Cao</strong>, Yuan Yao, Hengfeng Wei, Taolue Chen, Xiaoxing Ma
           </div>
-          <div class="paper-authors"><span data-en="Second author · Distinguished Paper Award" data-zh="第二作者 · 杰出论文奖">Second author · Distinguished Paper Award</span></div>
-          <a class="paper-link" href="papers/ASE24_LaM4Inv.pdf" target="_blank">
+          <div class="item-detail"><span data-en="Second author · Distinguished Paper Award" data-zh="第二作者 · 杰出论文奖">Second author · Distinguished Paper Award</span></div>
+          <a class="item-link" href="papers/ASE24_LaM4Inv.pdf" target="_blank">
             <span data-en="📄 View Paper →" data-zh="📄 查看论文 →">📄 View Paper →</span>
           </a>
-          <a class="paper-link" href="https://github.com/SoftWiser-group/LaM4Inv" target="_blank" rel="noopener noreferrer">
+          <a class="item-link" href="https://github.com/SoftWiser-group/LaM4Inv" target="_blank" rel="noopener noreferrer">
             <span data-en="💻 View Code →" data-zh="💻 查看代码 →">💻 View Code →</span>
           </a>
         </li>
       </ul>
-    </section>
+    </div>
+  </section>
 
-    <!-- Technical Blog -->
-    <section class="card">
+  <!-- Technical Blog -->
+  <section class="content">
+    <div class="section-inner">
       <h2><span data-en="Technical Blog" data-zh="技术博客">Technical Blog</span></h2>
-      <ul class="paper-list">
-        <li class="paper-item">
-          <span class="paper-venue">TLAPS</span>
-          <div class="paper-title"><span data-en="How We Used Agents to Produce a 6,000-Line TLAPS Proof" data-zh="我们让 Agent 自动写出了 6000 行 TLAPS 证明">How We Used Agents to Produce a 6,000-Line TLAPS Proof</span></div>
-          <div class="paper-authors">
+      <ul class="item-list">
+        <li>
+          <span class="item-venue">TLAPS</span>
+          <div class="item-title"><span data-en="How We Used Agents to Produce a 6,000-Line TLAPS Proof" data-zh="我们让 Agent 自动写出了 6000 行 TLAPS 证明">How We Used Agents to Produce a 6,000-Line TLAPS Proof</span></div>
+          <div class="item-detail">
             <span data-en="Agentic TLAPS proof generation for MongoLoglessDynamicRaft." data-zh="面向 MongoLoglessDynamicRaft 的 Agentic TLAPS 证明生成。">Agentic TLAPS proof generation for MongoLoglessDynamicRaft.</span>
           </div>
-          <a class="paper-link" href="blog/mongo-tlaps-proof.html" target="_blank">
+          <a class="item-link" href="blog/mongo-tlaps-proof.html" target="_blank">
             <span data-en="📄 Read Blog →" data-zh="📄 阅读博客 →">📄 Read Blog →</span>
           </a>
         </li>
       </ul>
-    </section>
+    </div>
+  </section>
 
-    <!-- Education and Honors -->
-    <section class="card">
-      <h2><span data-en="Education & Honors" data-zh="教育与荣誉">Education & Honors</span></h2>
-      <ul class="paper-list">
-        <li class="paper-item">
-          <span class="paper-venue"><span data-en="EDUCATION" data-zh="教育">EDUCATION</span></span>
-          <div class="paper-title"><span data-en="Nanjing University" data-zh="南京大学">Nanjing University</span></div>
-          <div class="paper-authors"><span data-en="Combined M.S.-Ph.D. program in Computer Science, School of Computer Science and State Key Laboratory for Novel Software Technology, Sep. 2023 - present." data-zh="计算机科学硕博连读，计算机学院、计算机软件新技术国家重点实验室，2023 年 9 月至今。">Combined M.S.-Ph.D. program in Computer Science, School of Computer Science and State Key Laboratory for Novel Software Technology, Sep. 2023 - present.</span></div>
-          <div class="paper-authors"><span data-en="B.Sc. in Computer Science, Kuang Yaming Honors School, Sep. 2019 - Jun. 2023." data-zh="计算机科学与技术学士，匡亚明学院拔尖计划，2019 年 9 月至 2023 年 6 月。">B.Sc. in Computer Science, Kuang Yaming Honors School, Sep. 2019 - Jun. 2023.</span></div>
+  <!-- Education and Honors -->
+  <section class="content">
+    <div class="section-inner">
+      <h2><span data-en="Education &amp; Honors" data-zh="教育与荣誉">Education &amp; Honors</span></h2>
+      <ul class="item-list">
+        <li>
+          <span class="item-venue"><span data-en="EDUCATION" data-zh="教育">EDUCATION</span></span>
+          <div class="item-title"><span data-en="Nanjing University" data-zh="南京大学">Nanjing University</span></div>
+          <div class="item-detail"><span data-en="Combined M.S.-Ph.D. program in Computer Science, School of Computer Science and State Key Laboratory for Novel Software Technology, Sep. 2023 - present." data-zh="计算机科学硕博连读，计算机学院、计算机软件新技术国家重点实验室，2023 年 9 月至今。">Combined M.S.-Ph.D. program in Computer Science, School of Computer Science and State Key Laboratory for Novel Software Technology, Sep. 2023 - present.</span></div>
+          <div class="item-detail"><span data-en="B.Sc. in Computer Science, Kuang Yaming Honors School, Sep. 2019 - Jun. 2023." data-zh="计算机科学与技术学士，匡亚明学院拔尖计划，2019 年 9 月至 2023 年 6 月。">B.Sc. in Computer Science, Kuang Yaming Honors School, Sep. 2019 - Jun. 2023.</span></div>
         </li>
-        <li class="paper-item">
-          <span class="paper-venue"><span data-en="HONOR" data-zh="荣誉">HONOR</span></span>
-          <div class="paper-title"><span data-en="Distinguished Paper Award, ASE 2024" data-zh="ASE 2024 杰出论文奖">Distinguished Paper Award, ASE 2024</span></div>
+        <li>
+          <span class="item-venue"><span data-en="HONOR" data-zh="荣誉">HONOR</span></span>
+          <div class="item-title"><span data-en="Distinguished Paper Award, ASE 2024" data-zh="ASE 2024 杰出论文奖">Distinguished Paper Award, ASE 2024</span></div>
         </li>
       </ul>
-    </section>
+    </div>
+  </section>
 
-    <footer class="footer">
-      © 2026 Weining Cao
-    </footer>
-  </div>
+  <footer class="footer">
+    © 2026 Weining Cao
+  </footer>
 
   <script>
-    // ===== 语言切换 =====
+    // ===== Language switch =====
     function switchLang(lang) {
       document.getElementById('btn-en').classList.toggle('active', lang === 'en');
       document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
@@ -559,25 +610,21 @@
       localStorage.setItem('preferred-lang', lang);
     }
 
-    // ===== 复制邮箱到剪切板 =====
+    // ===== Copy email to clipboard =====
     function copyEmail(element) {
       const email = element.getAttribute('data-email');
 
-      // 使用现代 Clipboard API
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(email).then(() => {
           showCopiedTip(element);
         }).catch(err => {
-          // 降级方案
           fallbackCopy(email, element);
         });
       } else {
-        // 旧浏览器降级方案
         fallbackCopy(email, element);
       }
     }
 
-    // 降级复制方法（兼容旧浏览器）
     function fallbackCopy(text, element) {
       const textarea = document.createElement('textarea');
       textarea.value = text;
@@ -590,18 +637,15 @@
         document.execCommand('copy');
         showCopiedTip(element);
       } catch (err) {
-        console.error('复制失败:', err);
-        alert('复制失败，请手动复制: ' + text);
+        console.error('Copy failed:', err);
+        alert('Copy failed, please copy manually: ' + text);
       }
 
       document.body.removeChild(textarea);
     }
 
-    // 显示"已复制"提示
     function showCopiedTip(element) {
       element.classList.add('copied');
-
-      // 1.5秒后隐藏提示
       setTimeout(() => {
         element.classList.remove('copied');
       }, 1500);
