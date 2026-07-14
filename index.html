@@ -282,39 +282,30 @@
 
     /* ========== Research Grid ========== */
     .research-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
     .research-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      background: #fff;
-      padding: 22px 26px;
-      border-radius: 10px;
-      font-size: 1.06em;
-      color: #333;
-      border: 1px solid #e8e8e8;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 1em;
+      font-weight: 500;
+      color: #2c3e50;
+      background: #edf0f4;
       transition: all 0.2s ease;
-      line-height: 1.5;
     }
 
     .research-item:hover {
-      border-color: #2c3e50;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      background: #e0e5ec;
     }
 
     .research-icon {
-      font-size: 1.4em;
-      flex-shrink: 0;
-      line-height: 1;
-      margin-top: 1px;
-    }
-
-    .research-label {
-      font-weight: 600;
+      font-size: 1.1em;
     }
 
     /* ========== Paper / List Items ========== */
