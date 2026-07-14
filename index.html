@@ -282,30 +282,41 @@
 
     /* ========== Research Grid ========== */
     .research-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
     }
 
     .research-item {
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      gap: 8px;
-      padding: 10px 20px;
-      border-radius: 50px;
-      font-size: 1em;
-      font-weight: 500;
+      gap: 16px;
+      min-height: 104px;
+      padding: 22px 24px;
+      border: 1px solid #e1e5eb;
+      border-radius: 12px;
       color: #2c3e50;
-      background: #edf0f4;
-      transition: all 0.2s ease;
+      background: rgba(255,255,255,0.72);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
 
     .research-item:hover {
-      background: #e0e5ec;
+      transform: translateY(-2px);
+      border-color: #b7c3d1;
+      box-shadow: 0 8px 20px rgba(26,42,58,0.08);
     }
 
-    .research-icon {
-      font-size: 1.1em;
+    .research-index {
+      color: #70849a;
+      font-size: 0.78em;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+    }
+
+    .research-label {
+      font-size: 1.03em;
+      font-weight: 600;
+      line-height: 1.45;
     }
 
     /* ========== Paper / List Items ========== */
@@ -421,6 +432,12 @@
 
       .research-grid {
         grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .research-item {
+        min-height: auto;
+        padding: 18px 20px;
       }
 
       .lang-switcher {
@@ -505,19 +522,19 @@
       <h2><span data-en="Research Interests" data-zh="研究领域">Research Interests</span></h2>
       <div class="research-grid">
         <div class="research-item">
-          <span class="research-icon">🔍</span>
+          <span class="research-index">01</span>
           <span class="research-label" data-en="Inductive Invariant Inference" data-zh="归纳不变式推导">Inductive Invariant Inference</span>
         </div>
         <div class="research-item">
-          <span class="research-icon">🌐</span>
+          <span class="research-index">02</span>
           <span class="research-label" data-en="Distributed Protocol Verification" data-zh="分布式协议验证">Distributed Protocol Verification</span>
         </div>
         <div class="research-item">
-          <span class="research-icon">🤖</span>
+          <span class="research-index">03</span>
           <span class="research-label" data-en="Neuro-symbolic Formal Verification" data-zh="神经符号形式化验证">Neuro-symbolic Formal Verification</span>
         </div>
         <div class="research-item">
-          <span class="research-icon">⚙️</span>
+          <span class="research-index">04</span>
           <span class="research-label" data-en="Automated Proof Generation" data-zh="形式化证明自动生成">Automated Proof Generation</span>
         </div>
       </div>
