@@ -35,10 +35,10 @@
       --glass-border: rgba(255,255,255,0.2);
       --glass-border-hover: rgba(255,255,255,0.4);
       --glass-solid: rgba(255,255,255,0.95);
-      --hero-tagline-color: rgba(255,255,255,0.8);
+      --hero-tagline-color: rgba(255,255,255,0.85);
       --hero-text-muted: rgba(255,255,255,0.75);
       --hero-text-faint: rgba(255,255,255,0.65);
-      --scrim-color: 0, 0, 0;
+      --scrim-color: 8, 12, 18;
 
       /* Radius */
       --radius-card: 12px;
@@ -58,10 +58,14 @@
 
       /* Shadow */
       --shadow-card-hover: 0 2px 6px rgba(26,42,58,0.05), 0 12px 24px rgba(26,42,58,0.09);
+      --shadow-pill-hover: 0 6px 16px rgba(0,0,0,0.25);
+      --shadow-lang: 0 4px 16px rgba(0,0,0,0.18);
+      --shadow-inset-highlight: inset 0 1px 0 rgba(255,255,255,0.18);
 
       /* Motion */
       --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
       --dur-fast: 0.2s;
+      --dur-med: 0.3s;
     }
 
     body {
@@ -83,12 +87,13 @@
 
     .lang-btn {
       display: flex;
-      background: rgba(255,255,255,0.15);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      background: var(--glass-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border-radius: var(--radius-pill);
       padding: 4px;
-      border: 1px solid rgba(255,255,255,0.25);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow-lang);
     }
 
     .lang-btn button {
@@ -100,13 +105,14 @@
       color: var(--hero-text-muted);
       cursor: pointer;
       border-radius: var(--radius-pill);
-      transition: all 0.3s ease;
+      transition: all var(--dur-med) var(--ease-out);
       font-family: inherit;
     }
 
     .lang-btn button.active {
       background: var(--glass-solid);
       color: var(--color-heading);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.15);
     }
 
     .lang-btn button:hover:not(.active) {
@@ -130,12 +136,14 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        180deg,
-        rgba(var(--scrim-color),0.55) 0%,
-        rgba(var(--scrim-color),0.45) 50%,
-        rgba(var(--scrim-color),0.6) 100%
-      );
+      background:
+        radial-gradient(ellipse at center, transparent 45%, rgba(var(--scrim-color),0.28) 100%),
+        linear-gradient(
+          180deg,
+          rgba(var(--scrim-color),0.52) 0%,
+          rgba(var(--scrim-color),0.42) 45%,
+          rgba(var(--scrim-color),0.62) 100%
+        );
     }
 
     .hero-content {
@@ -149,7 +157,8 @@
       font-weight: 700;
       color: #fff;
       margin-bottom: 16px;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.02em;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.35);
     }
 
     .hero .tagline {
@@ -157,6 +166,7 @@
       color: var(--hero-tagline-color);
       line-height: 2;
       margin-bottom: 40px;
+      text-shadow: 0 1px 10px rgba(0,0,0,0.3);
     }
 
     .hero .tagline strong {
@@ -178,19 +188,21 @@
       align-items: center;
       gap: 10px;
       background: var(--glass-bg);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       padding: 10px 22px;
       border-radius: var(--radius-pill);
       border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow-inset-highlight);
       text-decoration: none;
       color: inherit;
-      transition: all 0.25s ease;
+      transition: all 0.25s var(--ease-out);
     }
 
     .hero .stat-item:hover {
       background: var(--glass-bg-hover);
       border-color: var(--glass-border-hover);
+      transform: translateY(-2px);
     }
 
     .hero .stat-icon {
@@ -208,6 +220,7 @@
       font-weight: 700;
       color: #fff;
       line-height: 1.2;
+      font-variant-numeric: tabular-nums;
     }
 
     .hero .stat-label {
@@ -231,15 +244,16 @@
       gap: 8px;
       padding: 12px 28px;
       background: var(--glass-bg);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       color: #fff;
       text-decoration: none;
       border-radius: var(--radius-pill);
       font-weight: 500;
       font-size: 0.95em;
       border: 1px solid var(--glass-border);
-      transition: all 0.25s ease;
+      box-shadow: var(--shadow-inset-highlight);
+      transition: all 0.25s var(--ease-out);
     }
 
     .hero .links a:hover,
@@ -247,6 +261,13 @@
       background: var(--glass-solid);
       color: var(--color-heading);
       border-color: var(--glass-solid);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-pill-hover);
+    }
+
+    .hero .links a:active,
+    .hero .links .email-copy:active {
+      transform: translateY(0);
     }
 
     /* ========== Email copy tooltip ========== */
@@ -349,10 +370,16 @@
       transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
     }
 
-    .research-item:hover {
-      transform: translateY(-2px);
-      border-color: var(--color-border-hover);
-      box-shadow: var(--shadow-card-hover);
+    @media (hover: hover) and (pointer: fine) {
+      .research-item:hover {
+        transform: translateY(-2px);
+        border-color: var(--color-border-hover);
+        box-shadow: var(--shadow-card-hover);
+      }
+
+      .research-item:hover .research-index {
+        color: var(--color-accent);
+      }
     }
 
     .research-index {
@@ -361,10 +388,6 @@
       font-weight: 700;
       letter-spacing: var(--tracking-wide);
       transition: color var(--dur-fast) var(--ease-out);
-    }
-
-    .research-item:hover .research-index {
-      color: var(--color-accent);
     }
 
     .research-label {
@@ -441,10 +464,12 @@
       margin-right: 20px;
     }
 
-    .item-link:hover {
-      color: var(--color-accent-strong);
-      text-decoration: underline;
-      text-underline-offset: 4px;
+    @media (hover: hover) and (pointer: fine) {
+      .item-link:hover {
+        color: var(--color-accent-strong);
+        text-decoration: underline;
+        text-underline-offset: 4px;
+      }
     }
 
     /* ========== Footer ========== */
@@ -455,6 +480,37 @@
       padding: 36px;
       font-size: 0.9em;
       letter-spacing: 0.01em;
+    }
+
+    /* ========== Focus & Fallbacks ========== */
+    a:focus-visible,
+    button:focus-visible,
+    .email-copy:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 3px;
+      border-radius: var(--radius-badge);
+    }
+
+    .hero a:focus-visible,
+    .hero .email-copy:focus-visible,
+    .lang-btn button:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 3px;
+    }
+
+    @supports not (backdrop-filter: blur(1px)) {
+      .hero .stat-item,
+      .hero .links a,
+      .hero .links .email-copy,
+      .lang-btn {
+        background: rgba(20,28,38,0.55);
+      }
+    }
+
+    @media (hover: none) {
+      .hero {
+        background-attachment: scroll;
+      }
     }
 
     /* ========== Responsive ========== */
@@ -479,6 +535,13 @@
 
       .hero .stat-item {
         padding: 8px 16px;
+      }
+
+      .hero .stat-item,
+      .hero .links a,
+      .hero .links .email-copy {
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
       }
 
       .hero .stat-number {
@@ -507,6 +570,18 @@
       .lang-btn button {
         padding: 7px 14px;
         font-size: 0.8em;
+      }
+    }
+
+    /* ========== Reduced Motion ========== */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        transition-delay: 0s !important;
       }
     }
   </style>
@@ -550,7 +625,7 @@
       </div>
 
       <div class="links">
-        <span class="email-copy" data-email="weiningcao@smail.nju.edu.cn" onclick="copyEmail(this)">
+        <span class="email-copy" data-email="weiningcao@smail.nju.edu.cn" onclick="copyEmail(this)" tabindex="0" role="button">
           <span data-en="📧 Email" data-zh="📧 邮箱">📧 Email</span>
           <span class="copy-tooltip" data-en="Copied!" data-zh="已复制!">Copied!</span>
         </span>
@@ -751,6 +826,14 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       switchLang(localStorage.getItem('preferred-lang') || 'en');
+
+      // Keyboard access for the email copy button
+      document.querySelector('.email-copy').addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          copyEmail(event.currentTarget);
+        }
+      });
     });
   </script>
 </body>
