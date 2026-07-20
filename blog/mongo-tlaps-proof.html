@@ -5,57 +5,114 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>How We Used Agents to Produce a 6,000-Line TLAPS Proof</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --color-text: #2f3a46;
+      --color-heading: #1a1a2e;
+      --color-accent: #2c3e50;
+      --color-accent-strong: #1a252f;
+      --color-border: #e6e9ee;
+      --color-code-bg: #f3f4f6;
+      --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      max-width: 860px;
-      margin: 48px auto;
-      padding: 0 24px;
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        "PingFang SC",
-        "Microsoft YaHei",
-        Arial,
-        sans-serif;
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
       line-height: 1.75;
-      color: #222;
+      font-size: 16px;
+      color: var(--color-text);
       background: #fff;
     }
 
+    .post {
+      max-width: 820px;
+      margin: 64px auto 96px;
+      padding: 0 24px;
+    }
+
     a {
-      color: #2c3e50;
+      color: var(--color-accent);
       font-weight: 600;
+      text-decoration: none;
+      transition: color 0.2s var(--ease-out);
+    }
+
+    a:hover {
+      color: var(--color-accent-strong);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    a:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .back-link::before {
+      content: '←';
+      margin-right: 8px;
     }
 
     h1 {
+      color: var(--color-heading);
+      font-weight: 700;
+      letter-spacing: -0.02em;
       line-height: 1.25;
       margin: 0 0 28px;
     }
 
     h2 {
-      margin-top: 40px;
+      color: var(--color-heading);
+      font-weight: 700;
+      letter-spacing: -0.01em;
       line-height: 1.35;
+      margin-top: 48px;
     }
 
     p {
       margin: 18px 0;
     }
 
+    ol {
+      padding-left: 24px;
+    }
+
+    li {
+      margin: 8px 0;
+    }
+
     pre {
       overflow-x: auto;
-      background: #f3f4f6;
-      padding: 14px 16px;
-      border-radius: 6px;
+      background: var(--color-code-bg);
+      border: 1px solid var(--color-border);
+      padding: 16px 18px;
+      border-radius: 8px;
     }
 
     code {
-      background: #f3f4f6;
-      padding: 2px 5px;
+      font-family: var(--font-mono);
+      font-size: 0.9em;
+      background: var(--color-code-bg);
+      padding: 2px 6px;
       border-radius: 4px;
     }
 
@@ -64,14 +121,28 @@
       background: transparent;
     }
 
-    .back-link {
-      display: inline-block;
-      margin-bottom: 24px;
+    .footer {
+      background: var(--color-heading);
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 36px;
+      font-size: 0.9em;
+    }
+
+    @media (max-width: 768px) {
+      .post {
+        margin: 40px auto 72px;
+      }
+
+      h1 {
+        font-size: 1.6em;
+      }
     }
   </style>
 </head>
 
 <body>
+  <main class="post">
   <a class="back-link" href="/">Back to homepage</a>
 
   <h1>How We Used Agents to Produce a 6,000-Line TLAPS Proof</h1>
@@ -125,6 +196,9 @@
   <p>So far, we have demonstrated the pipeline from automatic inductive-invariant inference to automatic TLAPS proof generation for a protocol at the scale of MongoLoglessDynamicRaft. Other protocols can differ in state space, action structure, invariant form, and proof style. This method still needs to be tested for stability across more protocols, especially those with more complex log structures, safety invariants, and compositional reasoning requirements.</p>
 
   <p>From an engineering perspective, three practical issues remain: token consumption is still high, proof states need more complete persistence and reuse, and proof closure must become faster. Next, I plan to improve the harness scripts and associated persistence so that the agent can continue from a structured proof state instead of rebuilding its full understanding of the context in every round, and can identify and discharge open proof obligations more quickly.</p>
+  </main>
+
+  <footer class="footer">© 2026 Weining Cao</footer>
 </body>
 
 </html>
