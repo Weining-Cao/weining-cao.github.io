@@ -720,7 +720,7 @@
           <a class="stat-item" href="https://scholar.google.com/citations?user=g9oDZ_AAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener noreferrer">
             <span class="stat-icon" aria-hidden="true">📚</span>
             <div class="stat-content">
-              <span class="stat-number">80</span>
+              <span class="stat-number" id="scholar-citations" aria-live="polite">101</span>
               <span class="stat-label" data-en="Citations" data-zh="论文引用">Citations</span>
             </div>
           </a>
@@ -968,9 +968,30 @@
       }
     }
 
+    // ===== Google Scholar citations =====
+    // metrics.json is refreshed daily by the repository's GitHub Actions workflow.
+    async function loadScholarCitations() {
+      const citationCount = document.getElementById('scholar-citations');
+
+      try {
+        const response = await fetch('metrics.json', { cache: 'no-store' });
+        if (!response.ok) throw new Error('Citation metrics request failed');
+
+        const metrics = await response.json();
+        if (!Number.isSafeInteger(metrics.googleScholarCitations) || metrics.googleScholarCitations < 0) {
+          throw new Error('Invalid citation count');
+        }
+
+        citationCount.textContent = metrics.googleScholarCitations.toLocaleString();
+      } catch {
+        citationCount.textContent = '—';
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       switchLang(localStorage.getItem('preferred-lang') || 'en');
       loadGitHubStars();
+      loadScholarCitations();
     });
   </script>
 </body>
