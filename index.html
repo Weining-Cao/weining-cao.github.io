@@ -713,7 +713,7 @@
           <a class="stat-item" href="https://github.com/Weining-Cao" target="_blank" rel="noopener noreferrer">
             <span class="stat-icon" aria-hidden="true">⭐</span>
             <div class="stat-content">
-              <span class="stat-number" id="github-stars">13</span>
+              <span class="stat-number" id="github-stars" aria-live="polite">—</span>
               <span class="stat-label" data-en="Project Stars" data-zh="项目 Star 数">Project Stars</span>
             </div>
           </a>
@@ -934,8 +934,43 @@
       }, 1500);
     }
 
+    // ===== GitHub stars =====
+    // Count repositories owned by Weining-Cao plus projects hosted by the research group.
+    const githubOwner = 'Weining-Cao';
+    const groupProjectRepos = [
+      'SoftWiser-group/I3DP',
+      'SoftWiser-group/Clause2Inv'
+    ];
+
+    async function loadGitHubStars() {
+      const starCount = document.getElementById('github-stars');
+      const headers = { Accept: 'application/vnd.github+json' };
+
+      try {
+        const responses = await Promise.all([
+          fetch(`https://api.github.com/users/${githubOwner}/repos?type=owner&per_page=100`, { headers }),
+          ...groupProjectRepos.map(repo => fetch(`https://api.github.com/repos/${repo}`, { headers }))
+        ]);
+
+        if (responses.some(response => !response.ok)) throw new Error('GitHub API request failed');
+
+        const [personalRepos, ...groupRepos] = await Promise.all(responses.map(response => response.json()));
+        const repositories = [
+          ...personalRepos.filter(repo => !repo.fork && !repo.archived),
+          ...groupRepos
+        ];
+        const uniqueRepositories = [...new Map(repositories.map(repo => [repo.full_name, repo])).values()];
+        const totalStars = uniqueRepositories.reduce((sum, repo) => sum + repo.stargazers_count, 0);
+
+        starCount.textContent = totalStars.toLocaleString();
+      } catch {
+        starCount.textContent = '—';
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       switchLang(localStorage.getItem('preferred-lang') || 'en');
+      loadGitHubStars();
     });
   </script>
 </body>
