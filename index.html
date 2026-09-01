@@ -935,34 +935,29 @@
     }
 
     // ===== GitHub stars =====
-    // Count repositories owned by Weining-Cao plus projects hosted by the research group.
-    const githubOwner = 'Weining-Cao';
-    const groupProjectRepos = [
-      'SoftWiser-group/I3DP',
-      'SoftWiser-group/Clause2Inv'
-    ];
+    // GitHub Actions refreshes githubStars in metrics.json daily, so visitors do not call GitHub's API.
+    let metricsPromise;
+
+    function loadMetrics() {
+      if (!metricsPromise) {
+        metricsPromise = fetch('metrics.json', { cache: 'no-store' }).then(async response => {
+          if (!response.ok) throw new Error('Homepage metrics request failed');
+          return response.json();
+        });
+      }
+      return metricsPromise;
+    }
 
     async function loadGitHubStars() {
       const starCount = document.getElementById('github-stars');
-      const headers = { Accept: 'application/vnd.github+json' };
 
       try {
-        const responses = await Promise.all([
-          fetch(`https://api.github.com/users/${githubOwner}/repos?type=owner&per_page=100`, { headers }),
-          ...groupProjectRepos.map(repo => fetch(`https://api.github.com/repos/${repo}`, { headers }))
-        ]);
+        const metrics = await loadMetrics();
+        if (!Number.isSafeInteger(metrics.githubStars) || metrics.githubStars < 0) {
+          throw new Error('Invalid GitHub Star count');
+        }
 
-        if (responses.some(response => !response.ok)) throw new Error('GitHub API request failed');
-
-        const [personalRepos, ...groupRepos] = await Promise.all(responses.map(response => response.json()));
-        const repositories = [
-          ...personalRepos.filter(repo => !repo.fork && !repo.archived),
-          ...groupRepos
-        ];
-        const uniqueRepositories = [...new Map(repositories.map(repo => [repo.full_name, repo])).values()];
-        const totalStars = uniqueRepositories.reduce((sum, repo) => sum + repo.stargazers_count, 0);
-
-        starCount.textContent = totalStars.toLocaleString();
+        starCount.textContent = metrics.githubStars.toLocaleString();
       } catch {
         starCount.textContent = '—';
       }
@@ -974,10 +969,7 @@
       const citationCount = document.getElementById('scholar-citations');
 
       try {
-        const response = await fetch('metrics.json', { cache: 'no-store' });
-        if (!response.ok) throw new Error('Citation metrics request failed');
-
-        const metrics = await response.json();
+        const metrics = await loadMetrics();
         if (!Number.isSafeInteger(metrics.googleScholarCitations) || metrics.googleScholarCitations < 0) {
           throw new Error('Invalid citation count');
         }

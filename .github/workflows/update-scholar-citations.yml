@@ -1,4 +1,4 @@
-name: Update Google Scholar citations
+name: Update homepage metrics
 
 on:
   schedule:
@@ -20,8 +20,12 @@ jobs:
         with:
           node-version: 22
 
-      - name: Refresh citation metrics
-        run: node scripts/update-scholar-citations.mjs
+      - name: Refresh homepage metrics
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          node scripts/update-scholar-citations.mjs
+          node scripts/update-github-stars.mjs
 
       - name: Commit refreshed metrics
         run: |
@@ -29,5 +33,5 @@ jobs:
           git diff --cached --quiet && exit 0
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Update Google Scholar citations"
+          git commit -m "Update homepage metrics"
           git push
