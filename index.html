@@ -113,6 +113,10 @@
       font-size: 16px;
     }
 
+    body.resume-preview-open {
+      overflow: hidden;
+    }
+
     .skip-link {
       position: fixed;
       top: 12px;
@@ -406,6 +410,7 @@
       color: var(--color-text);
       background: #f3f5f8;
       box-shadow: 0 24px 80px rgba(0,0,0,0.32);
+      overscroll-behavior: contain;
     }
 
     .resume-dialog::backdrop {
@@ -477,6 +482,7 @@
       flex: 1;
       min-height: 0;
       padding: 20px;
+      overscroll-behavior: contain;
     }
 
     .resume-frame {
@@ -1182,6 +1188,7 @@
       if (!dialog.open) {
         resumeTriggerBeforeOpen = document.activeElement;
         dialog.showModal();
+        document.body.classList.add('resume-preview-open');
       }
 
       dialog.querySelector('.resume-dialog-close').focus();
@@ -1251,6 +1258,7 @@
       });
 
       resumeDialog.addEventListener('close', () => {
+        document.body.classList.remove('resume-preview-open');
         if (resumeTriggerBeforeOpen && typeof resumeTriggerBeforeOpen.focus === 'function') {
           resumeTriggerBeforeOpen.focus();
         }
