@@ -1,29 +1,39 @@
 import { writeFile } from 'node:fs/promises';
 
 const scholarUrl = 'https://scholar.google.com/citations?user=g9oDZ_AAAAAJ&hl=en';
-const response = await fetch(scholarUrl, {
-  headers: {
-    'User-Agent': 'Mozilla/5.0 (compatible; WeiningCaoHomepageMetrics/1.0)'
+
+// Google Scholar intermittently blocks GitHub Actions runners with HTTP 403.
+// Keep the previous citation value and let the workflow continue instead of
+// failing the scheduled run (the GitHub stars step must still get a chance).
+let googleScholarCitations = null;
+try {
+  const response = await fetch(scholarUrl, {
+    headers: {
+      'User-Agent': 'Mozilla/5.0 (compatible; WeiningCaoHomepageMetrics/1.0)'
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error(`Google Scholar responded with HTTP ${response.status}`);
   }
-});
 
-if (!response.ok) {
-  throw new Error(`Google Scholar responded with HTTP ${response.status}`);
-}
+  const profile = await response.text();
+  if (!profile.includes('Weining Cao')) {
+    throw new Error('Google Scholar returned an unexpected profile');
+  }
 
-const profile = await response.text();
-if (!profile.includes('Weining Cao')) {
-  throw new Error('Google Scholar returned an unexpected profile');
-}
+  const citationMatch = profile.match(/Cited by\s+([\d,]+)/);
+  if (!citationMatch) {
+    throw new Error('Could not find the citation count in the Google Scholar profile');
+  }
 
-const citationMatch = profile.match(/Cited by\s+([\d,]+)/);
-if (!citationMatch) {
-  throw new Error('Could not find the citation count in the Google Scholar profile');
-}
-
-const googleScholarCitations = Number(citationMatch[1].replaceAll(',', ''));
-if (!Number.isSafeInteger(googleScholarCitations) || googleScholarCitations < 0) {
-  throw new Error('Google Scholar returned an invalid citation count');
+  googleScholarCitations = Number(citationMatch[1].replaceAll(',', ''));
+  if (!Number.isSafeInteger(googleScholarCitations) || googleScholarCitations < 0) {
+    throw new Error('Google Scholar returned an invalid citation count');
+  }
+} catch (error) {
+  console.warn(`Skipping Google Scholar update: ${error.message}`);
+  process.exit(0);
 }
 
 const metrics = {
